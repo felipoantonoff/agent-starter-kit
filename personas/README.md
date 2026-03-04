@@ -24,7 +24,7 @@ Personas MUST NOT reference framework internals (maestro, dispatch mechanics). A
 
 Lowercase, short name: `reviewer.md`, `architect.md`
 
-## Schema (v0.0.3 // 2026-02-10)
+## Schema (v0.1.0 // 2026-03-04)
 
 ### Frontmatter
 

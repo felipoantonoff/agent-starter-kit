@@ -23,9 +23,9 @@ Do not extract when the procedure is short and intuitive. If a competent agent c
 
 Lowercase, hyphenated: `task-tracking.md`, `dispatch.md`
 
-Persona-specific skills are prefixed with the persona name: `maestro-boot.md`, `reviewer-checklist.md`. Universal skills carry no prefix.
+Persona-specific skills are prefixed with the persona name: `coder-linting.md`, `reviewer-checklist.md`. Universal skills carry no prefix.
 
-## Schema (v0.0.1 // 2026-02-05)
+## Schema (v0.1.0 // 2026-03-04)
 
 ### Frontmatter
 

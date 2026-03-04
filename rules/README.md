@@ -19,7 +19,7 @@ Rules are constraints — short, direct, and non-procedural. A rule that needs m
 
 Lowercase, hyphenated. Scoped rules are prefixed with the persona or domain they target: `coder-formatting.md`, not `formatting.md`. Universal rules carry no prefix.
 
-## Schema (v0.0.2 // 2026-02-20)
+## Schema (v0.1.0 // 2026-03-04)
 
 ### Frontmatter
 
