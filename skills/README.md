@@ -4,11 +4,13 @@ Skills are collected intelligence on how to operate a specific tool — whether 
 
 ### Available Skills
 
-| Skill            | Description                                                     |
-| ---------------- | --------------------------------------------------------------- |
-| `boot`           | Session startup — load rules, orient, greet                     |
-| `dispatch`       | Assembles sub-agent prompts with task brief                     |
-| `task-tracking`  | File-based to-do tracking for multi-step and multi-session work |
+| Skill                  | Description                                                     |
+| ---------------------- | --------------------------------------------------------------- |
+| `agent-memory`         | Long-term memory across sessions                                |
+| `boot`                 | Session startup — gitignore, auto-update, memory, rules, orient |
+| `context-maintenance`  | How to maintain .context.md files as the project evolves        |
+| `dispatch`             | Assembles sub-agent prompts with task brief                     |
+| `task-tracking`        | File-based to-do tracking for multi-step and multi-session work |
 
 ## When to Extract a Skill
 

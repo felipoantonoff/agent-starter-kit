@@ -1,7 +1,7 @@
 ---
-shortDescription: Session startup — gitignore, auto-update, rules, orient, and greet.
+shortDescription: Session startup — gitignore, auto-update, memory, rules, context, and greet.
 usedBy: [maestro]
-version: 0.2.0
+version: 0.3.0
 lastUpdated: 2026-03-10
 ---
 
@@ -27,14 +27,21 @@ Every session starts cold. The Maestro needs to ensure the project is wired corr
 
    - If the pull brought changes:
      - Read the `CHANGELOG.md` in `.agents` to understand what changed.
+     - Purge obsolete long-term memory entries — compare `.memory/long-term.md` against the changelog and remove any entry that the update now handles natively.
      - Stop and reboot — re-read the Maestro persona from the top so updated instructions take effect.
    - If already up to date, continue.
 
-3. **Load the rules.** Read and internalize all files under `rules/commandments/` and `rules/edicts/`. Counsel (`rules/counsel/`) is optional — read it if the task involves user-facing communication.
+3. **Memory.** Load long-term memory (uses: `skills/agent-memory.md`).
 
-4. **Orient.** Read relevant source files, documentation, and any existing `.context.md` files to understand the project's current state. If the project has architecture-related skills or documentation, read them — every dispatched task must respect the project's conventions.
+4. **Load the rules.** Read and internalize all files under `rules/commandments/` and `rules/edicts/`. Counsel (`rules/counsel/`) is optional — read it if the task involves user-facing communication.
 
-5. **First-run check.** If the `.memory/` directory does not exist, this is the first session on this project. Dispatch the **Contextualizer** to walk the codebase and produce `.context.md` orientation files before proceeding.
+5. **Context.** Verify the project has context files. Run:
+
+   ```bash
+   find . -name ".context.md" -not -path "*/node_modules/*" -not -path "*/.git/*" -not -path "*/vendor/*" -not -path "*/.cache/*" -print -quit
+   ```
+
+   - If `find` produces no output, no `.context.md` files exist. Dispatch the **Contextualizer** (uses: `personas/contextualizer.md`) before proceeding.
 
 6. **Greet.** Greet the user and wait for instructions.
 
@@ -42,4 +49,3 @@ Every session starts cold. The Maestro needs to ensure the project is wired corr
 
 - Never skip rule loading. Dispatching without rules means dispatching without constraints.
 - Never skip the framework pull. An outdated `.agents` directory means outdated instructions.
-- Never proceed past orientation if the project structure is unclear — ask the user for guidance.

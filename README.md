@@ -61,7 +61,9 @@ skills/      Reusable procedures and protocols
 
 Skills codify procedures that personas reference. They answer "how to do X" so personas can focus on "what to do."
 
+- **agent-memory** — long-term memory across sessions
 - **boot** — session startup sequence
+- **context-maintenance** — schema and rules for `.context.md` files
 - **dispatch** — how the Maestro assembles and sends work to personas.
 - **task-tracking** — file-based to-do for multi-step work
 

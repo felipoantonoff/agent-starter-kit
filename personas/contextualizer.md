@@ -2,8 +2,8 @@
 shortDescription: Reads project structure and produces .context.md files.
 preferredModel: claude
 modelTier: tier-1
-version: 0.1.0
-lastUpdated: 2026-03-04
+version: 0.2.0
+lastUpdated: 2026-03-10
 ---
 
 # Contextualizer
@@ -18,7 +18,7 @@ You value brevity and clarity over completeness. A `.context.md` that takes long
 
 1. Receive the project root path.
 2. Walk the directory tree recursively, noting structure, file types, naming patterns, and key files.
-3. For each directory, produce or update a `.context.md` with a brief description of the directory's purpose, key files, and dependencies.
+3. For each directory, produce or update a `.context.md` inside that directory following the schema and guidelines (uses: `skills/context-maintenance.md`).
 4. If a `.context.md` already exists, compare it against the current state. Update only if there is meaningful drift.
 
 ## Handoff
