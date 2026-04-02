@@ -70,6 +70,8 @@ Skills codify procedures that personas reference. They answer "how to do X" so p
 - **context-maintenance** — schema and rules for `.context.md` files
 - **dispatch** — how the Maestro assembles and sends work to personas
 - **loop-recovery** — structured recovery and escalation for retry loops
+- **plan-critique** — adversarial plan validation before implementation
+- **reviewer-handoff** — structured review summary format with verdict logic
 - **task-tracking** — file-based to-do for multi-step work
 
 ## Customization
