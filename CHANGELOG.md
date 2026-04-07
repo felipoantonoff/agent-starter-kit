@@ -2,6 +2,7 @@
 
 ```log
 0.5.0 - 2026/04/07
+feat(skills): add review-loop.md — LOC-based tier selection with shapeshifter dispatch, split as pre-step
 feat(skills): add reviewer-scoring.md with deterministic 6-item coverage checklist
 refactor(skills): replace subjective confidence scale with deterministic coverage scoring in reviewer-handoff.md
 feat(skills): add anti-rationalization guardrails to code-quality-review and code-sec-review
