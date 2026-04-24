@@ -22,21 +22,18 @@ The standard code review checks for correctness bugs — security is one bullet 
 2. **Injection analysis.** Trace every path where untrusted data enters the system and follow it to where it is consumed. Untrusted data includes: user input, HTTP headers, query parameters, request bodies, URL path segments, file contents, database results, API responses, environment variables, and message queue payloads.
 
    For each untrusted data flow, verify that the data is validated or sanitized before reaching any of these sinks:
-
-   | Sink | What to check | Ref |
-   |------|---------------|-----|
-   | SQL / NoSQL query | Parameterized queries or ORM — no string concatenation or interpolation. For NoSQL, no user-controlled operators (`$ne`, `$gt`, `$regex`, `$where`). | CWE-89, CWE-943 |
-   | OS command | No shell execution with user input. If unavoidable, allowlist of permitted values — never sanitize-and-pass. | CWE-78 |
-   | HTML / template output | Context-aware escaping (HTML body, attribute, JS, URL, CSS contexts each need different encoding). Framework auto-escaping enabled and not bypassed (`dangerouslySetInnerHTML`, `\| safe`, `Html.Raw`, `v-html`). | CWE-79 |
-   | HTTP header | No CRLF sequences (`\r\n`) in header values. Applies to `Set-Cookie`, `Location`, `Content-Disposition`, and custom headers. | CWE-113 |
-   | URL redirect / forward | Destination validated against an allowlist of trusted domains. No open redirects via user-controlled `returnUrl`, `next`, `redirect_uri`, or `Location` header. | CWE-601 |
-   | Server-side HTTP request | User-supplied URLs validated against an allowlist. Deny private/loopback ranges (`127.0.0.1`, `169.254.169.254`, `10.*`, `172.16-31.*`, `192.168.*`, `[::1]`, `[fd00::]`). Reject `file://`, `gopher://`, `dict://` schemes. | CWE-918 |
-   | XML parser | External entity processing disabled (`disallow-doctype-decl`, `FEATURE_SECURE_PROCESSING`). DTD loading disabled. If the parser accepts user-supplied XML, verify XXE is mitigated. | CWE-611 |
-   | Deserialization | No deserialization of untrusted data with native serializers (`pickle`, `ObjectInputStream`, `BinaryFormatter`, `unserialize`, `yaml.load`). Use safe alternatives (`json`, `yaml.safe_load`, allowlisted types). | CWE-502 |
-   | Log output | User input in log messages sanitized against log injection (newlines, ANSI escape sequences). No PII, tokens, or credentials written to logs. | CWE-117 |
-   | File path | No path traversal via `../` sequences. File access restricted to an expected directory using canonical path comparison. | CWE-22 |
-   | Regular expression | No user-controlled regex patterns. If unavoidable, enforce bounded quantifiers and apply timeout. | CWE-1333 |
-   | Template engine | User input never passed as template source — only as template data. Sandbox mode enabled where available. | CWE-1336 |
+   - **SQL / NoSQL query** — Parameterized queries or ORM — no string concatenation or interpolation. For NoSQL, no user-controlled operators (`$ne`, `$gt`, `$regex`, `$where`). (CWE-89, CWE-943)
+   - **OS command** — No shell execution with user input. If unavoidable, allowlist of permitted values — never sanitize-and-pass. (CWE-78)
+   - **HTML / template output** — Context-aware escaping (HTML body, attribute, JS, URL, CSS contexts each need different encoding). Framework auto-escaping enabled and not bypassed (`dangerouslySetInnerHTML`, `\| safe`, `Html.Raw`, `v-html`). (CWE-79)
+   - **HTTP header** — No CRLF sequences (`\r\n`) in header values. Applies to `Set-Cookie`, `Location`, `Content-Disposition`, and custom headers. (CWE-113)
+   - **URL redirect / forward** — Destination validated against an allowlist of trusted domains. No open redirects via user-controlled `returnUrl`, `next`, `redirect_uri`, or `Location` header. (CWE-601)
+   - **Server-side HTTP request** — User-supplied URLs validated against an allowlist. Deny private/loopback ranges (`127.0.0.1`, `169.254.169.254`, `10.*`, `172.16-31.*`, `192.168.*`, `[::1]`, `[fd00::]`). Reject `file://`, `gopher://`, `dict://` schemes. (CWE-918)
+   - **XML parser** — External entity processing disabled (`disallow-doctype-decl`, `FEATURE_SECURE_PROCESSING`). DTD loading disabled. If the parser accepts user-supplied XML, verify XXE is mitigated. (CWE-611)
+   - **Deserialization** — No deserialization of untrusted data with native serializers (`pickle`, `ObjectInputStream`, `BinaryFormatter`, `unserialize`, `yaml.load`). Use safe alternatives (`json`, `yaml.safe_load`, allowlisted types). (CWE-502)
+   - **Log output** — User input in log messages sanitized against log injection (newlines, ANSI escape sequences). No PII, tokens, or credentials written to logs. (CWE-117)
+   - **File path** — No path traversal via `../` sequences. File access restricted to an expected directory using canonical path comparison. (CWE-22)
+   - **Regular expression** — No user-controlled regex patterns. If unavoidable, enforce bounded quantifiers and apply timeout. (CWE-1333)
+   - **Template engine** — User input never passed as template source — only as template data. Sandbox mode enabled where available. (CWE-1336)
 
 3. **Authentication and session management.** Check:
    - Authentication is enforced on every endpoint that requires it — not assumed from middleware ordering or convention. Verify the middleware, guard, or decorator is explicitly attached.

@@ -10,12 +10,10 @@ Rules are constraints — short, direct, and non-procedural. A rule that needs m
 
 ## Available Rules
 
-| Rule                    | Description                                                            | Scope         |
-| ----------------------- | ---------------------------------------------------------------------- | ------------- |
-| `commandments/git`      | Conventional commits, branch naming, commit style                      | coding        |
-| `edicts/code-quality`   | Universal naming, testing, and quality conventions                     | coding        |
-| `edicts/code-debugging` | Root cause before fix, three-strike rule, anti-rationalization         | coding        |
-| `counsel/clarification` | When ambiguity warrants stopping vs proceeding with best judgment      | communication |
+- **`commandments/git`** — Conventional commits, branch naming, commit style (coding)
+- **`edicts/code-quality`** — Universal naming, testing, and quality conventions (coding)
+- **`edicts/code-debugging`** — Root cause before fix, three-strike rule, anti-rationalization (coding)
+- **`counsel/clarification`** — When ambiguity warrants stopping vs proceeding with best judgment (communication)
 
 ## File Naming
 
@@ -25,16 +23,12 @@ Lowercase, hyphenated. Scoped rules are prefixed with the persona or domain they
 
 ### Frontmatter
 
-| Field              | Required | Explain                                 | Example                                              |
-| ------------------ | -------- | --------------------------------------- | ---------------------------------------------------- |
-| `shortDescription` | Yes      | What the rule enforces in one sentence. | `Mandates .context.md updates on structural changes` |
-| `scope`            | Yes      | Task category this rule applies to.     | `coding`                                             |
-| `version`          | Yes      | Semantic version.                       | `0.1.0`                                              |
-| `lastUpdated`      | Yes      | Last modification date.                 | `2026-02-05`                                         |
+- **`shortDescription`** (Required) — What the rule enforces in one sentence. Example: `Mandates .context.md updates on structural changes`
+- **`scope`** (Required) — Task category this rule applies to. Example: `coding`
+- **`version`** (Required) — Semantic version. Example: `0.1.0`
+- **`lastUpdated`** (Required) — Last modification date. Example: `2026-02-05`
 
 ### Body
 
-| Section   | Required | Purpose                                                                                                               |
-| --------- | -------- | --------------------------------------------------------------------------------------------------------------------- |
-| Statement | Yes      | The rule itself. Use RFC-style language: MUST, MUST NOT, SHOULD, SHALL, SHALL NOT. As short as the constraint allows. |
-| Rationale | Yes      | Why this rule exists. One paragraph. Without rationale, rules feel arbitrary and get ignored.                         |
+- **Statement** (Required) — The rule itself. Use RFC-style language: MUST, MUST NOT, SHOULD, SHALL, SHALL NOT. As short as the constraint allows.
+- **Rationale** (Required) — Why this rule exists. One paragraph. Without rationale, rules feel arbitrary and get ignored.
