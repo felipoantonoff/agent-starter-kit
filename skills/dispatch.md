@@ -44,7 +44,7 @@ This is the only registry. If a persona is not listed there, it does not exist. 
 
 6. **List the rules (scoped).** Consult `rules/README.md` and select commandments, edicts, and counsel whose scope matches the task category. List their file paths in `<rules>` tags — do not inline the file contents. The persona has file access and will read them directly. If no rules match, omit the block entirely. When the task involves code changes — even if the persona does not write code (e.g. architect planning implementations) — include `coding`-scoped rules so the persona's output aligns with the conventions the coder will follow.
 
-7. **List relevant skills.** Consult `skills/README.md` and identify skills that would help the persona complete the task. List their file paths in `<skills>` tags. If no extra skills are relevant, omit the block entirely.
+7. **List relevant skills.** Consult `skills/README.md` and identify skills that would help the persona complete the task. List their file paths in `<skills>` tags. If no extra skills are relevant, omit the block entirely. When the task brief contains ambiguity (missing info, conflicting requirements, multiple valid paths), include `skills/agent-decision.md` so the sub-agent can structure its escalation.
 
 8. **Write the task brief.** Translate the user's intent into actionable instructions, wrapped in `<task>` tags. The brief must contain:
    - **Intent** — what the user wants accomplished, in the Maestro's words.
@@ -80,14 +80,39 @@ This is the only registry. If a persona is not listed there, it does not exist. 
 
 ## Providers
 
-Each row maps a provider to its `preferredModel` value, CLI tool, and concrete models per tier. Tier classes: **tier-1** = fast/cheap, **tier-2** = balanced, **tier-3** = reasoning/smartest.
+Each entry maps a provider to its `preferredModel` value, CLI tool, and concrete models per tier. Tier classes: **tier-1** = fast/cheap, **tier-2** = balanced, **tier-3** = reasoning/smartest.
 
-| Provider    | `preferredModel` | CLI            | tier-1                               | tier-2            | tier-3                         |
-| ----------- | ---------------- | -------------- | ------------------------------------ | ----------------- | ------------------------------ |
-| Claude Code | `claude`         | `claude`       | Haiku                                | Sonnet            | Opus                           |
-| Codex CLI   | `codex`          | `codex`        | `gpt-5.4-mini`                       | `gpt-5.3-codex`   | `gpt-5.4`                      |
-| Cursor CLI  | `cursor`         | `cursor-agent` | `auto`                               | `auto`            | `auto`                         |
-| Qwen        | `qwen`           | `opencode`     | bailian-coding-plan/qwen3-coder-next | bailian-coding-plan/qwen3.5-plus | bailian-coding-plan/qwen3.5-plus |
+### Claude Code
+
+- preferredModel: `claude`
+- CLI: `claude`
+- tier-1: Haiku
+- tier-2: Sonnet
+- tier-3: Opus
+
+### Codex CLI
+
+- preferredModel: `codex`
+- CLI: `codex`
+- tier-1: `gpt-5.4-mini`
+- tier-2: `gpt-5.3-codex`
+- tier-3: `gpt-5.4`
+
+### Cursor CLI
+
+- preferredModel: `cursor`
+- CLI: `cursor-agent`
+- tier-1: `auto`
+- tier-2: `auto`
+- tier-3: `auto`
+
+### Qwen
+
+- preferredModel: `qwen`
+- CLI: `opencode`
+- tier-1: bailian-coding-plan/qwen3-coder-next
+- tier-2: bailian-coding-plan/qwen3.5-plus
+- tier-3: bailian-coding-plan/qwen3.5-plus
 
 ## CLI Dispatch
 
