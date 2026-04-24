@@ -1,5 +1,5 @@
 ---
-shortDescription: How to maintain .context.md files and optionally docs/FEATURE-MAP.md as the project evolves.
+shortDescription: How to maintain .context.md files and docs/FEATURE-MAP.md as the project evolves.
 usedBy: [coder, contextualizer]
 version: 0.2.0
 lastUpdated: 2026-04-24
@@ -7,7 +7,7 @@ lastUpdated: 2026-04-24
 
 ## Purpose
 
-Every directory in a project has a `.context.md` that orients whoever arrives next — human or agent. These files answer "what lives here" so that agents and developers can navigate the codebase without reading every file. If your project tracks features, maintain `docs/FEATURE-MAP.md` alongside `.context.md` files — the feature map answers "how does this feature work end-to-end." This skill defines when and how to keep both accurate as the project evolves, and the schemas they must follow.
+Every directory keeps a `.context.md` that answers "what lives here." The project keeps one `docs/FEATURE-MAP.md` that maps each user-facing feature to its code path. This skill defines when and how to update both, and the schemas they follow.
 
 ## Procedure
 
@@ -54,11 +54,11 @@ exists.
 - Constraints and Guidance are optional — only include them when the directory has rules worth stating. Use RFC-style language.
 - Keep it short. This file will be read frequently by multiple agents.
 
-### docs/FEATURE-MAP.md (Optional)
+### docs/FEATURE-MAP.md
 
-If your project tracks features, maintain `docs/FEATURE-MAP.md` alongside `.context.md` files. The feature map is an index that maps every user-facing feature to the code path that implements it.
+5. **Scope.** Prefer scanning from `src/` or `docs/` as the root. The feature map is a single file at the project root — `docs/FEATURE-MAP.md`.
 
-5. **Determine if a feature map update is needed.** An update is required when a change:
+6. **Determine if a feature map update is needed.** An update is required when a change:
    - Adds, removes, or renames a user-facing feature.
    - Alters the information flow of an existing feature (new layer, different service, changed entry point).
    - Moves or renames files that appear in an existing feature path.
