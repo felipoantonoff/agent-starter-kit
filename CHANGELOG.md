@@ -1,7 +1,19 @@
 # Changelog
 
 ```log
-0.5.0 - 2026/04/07
+0.5.0 - 2026/04/24
+feat(personas): wire self-review gates into all four personas (coder/GRASP, architect/DRAFT, contextualizer/TRACE, reviewer/SHIELD)
+feat(personas): wire agent-decision.md into maestro parse step and dispatch skill for ambiguity escalation
+feat(skills): donate coder-self-review.md — GRASP rubric for implementation self-evaluation
+feat(skills): donate architect-self-review.md — DRAFT rubric for plan self-evaluation
+feat(skills): donate contextualizer-self-review.md — TRACE rubric for context self-evaluation
+feat(skills): donate reviewer-self-review.md — SHIELD rubric for unified reviewer self-evaluation
+feat(skills): donate agent-decision.md — structured ambiguity escalation with FRAME rubric
+refactor(personas): align contextualizer with FEATURE-MAP.md and trim verbose identity/purpose
+refactor(skills): add FEATURE-MAP section to context-maintenance.md — contextualizer produces both .context.md and feature map every full scan
+refactor: convert all markdown tables to lists across personas, skills, rules, and README files for MoE readability
+
+0.4.4 - 2026/04/07
 feat(skills): add review-loop.md — LOC-based tier selection with shapeshifter dispatch, split as pre-step
 feat(skills): add reviewer-scoring.md with deterministic 6-item coverage checklist
 refactor(skills): replace subjective confidence scale with deterministic coverage scoring in reviewer-handoff.md
