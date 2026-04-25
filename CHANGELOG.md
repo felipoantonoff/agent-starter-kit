@@ -12,6 +12,14 @@ refactor(skills): delete plan-critique.md — replaced by reviewer-architect-adv
 docs(skills): update architect-self-review.md reference to adversarial skill
 docs(skills): integrate FEATURE-MAP.md into contextualizer self-review rubric
 docs(skills): update skills README table entry for plan-critique rename
+feat(personas): change all personas to preferredModel: host for native dispatch
+docs(personas): update preferredModel schema to include all providers and host semantics
+feat(dispatch): add host provider entry for native dispatch routing
+feat(dispatch): add Gemini provider, backtick Claude/Qwen model names, update codex tier-3 to gpt-5.5 and qwen tier-3 to qwen3.6-plus
+fix(dispatch): Gemini CLI stdin clarification, Cursor auto-tier documentation, tier-3 ceiling guard, persona file validation and prompt injection guardrails
+fix(dispatch): Gemini model names backticked, Qwen model names backticked, Gemini CLI dispatch fixed (removed redundant --prompt)
+fix(dispatch): add tier-3 ceiling guard, clarify step 1 process-to-provider mapping, document Cursor auto-tier behavior
+fix(dispatch): add guardrails for persona file validation and prompt injection sanitization
 
 0.5.0 - 2026/04/24
 feat(personas): wire self-review gates into all four personas (coder/GRASP, architect/DRAFT, contextualizer/TRACE, reviewer/SHIELD)
