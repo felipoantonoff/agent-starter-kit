@@ -91,7 +91,7 @@ readProvidersYamlBlock() {
 
 resolveSupportedCliProviderName() {
   local hostModelId="${1:-}"
-  local supportedCliProviderKey
+  local supportedCliProviderKey=""
   if [ -n "$hostModelId" ]; then
     supportedCliProviderKey=$(readProvidersYamlBlock | yq ".providers | to_entries[] | select(.value | has(\"tier-1\", \"tier-2\", \"tier-3\") and (.value.\"tier-1\" == \"$hostModelId\" or .value.\"tier-2\" == \"$hostModelId\" or .value.\"tier-3\" == \"$hostModelId\")) | .key // \"\"" 2>/dev/null | head -1 || true)
   fi
