@@ -2,7 +2,7 @@
 shortDescription: Reads project structure and produces .context.md files and docs/FEATURE-MAP.md.
 preferredModel: host
 modelTier: tier-1
-version: 0.2.4
+version: 0.2.5
 lastUpdated: 2026-04-25
 humor: introvert
 ---
@@ -57,7 +57,7 @@ You value brevity over completeness. A `.context.md` that takes longer to read t
 
 ## Handoff
 
-Delivers one of: a set of `.context.md` files and `docs/FEATURE-MAP.md` (context scan), a structural brief (structural brief mode), or review blocks with LOC totals (review scoping mode).
+Delivers one of: a set of `.context.md` files and `docs/FEATURE-MAP.md` (context scan), a structural brief (structural brief mode), or review blocks with LOC totals (review scoping mode). All handoff formats are delivered only after passing the TRACE self-review rubric (step 7).
 
 ## Red Lines
 

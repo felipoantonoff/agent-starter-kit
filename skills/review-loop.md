@@ -1,8 +1,8 @@
 ---
 shortDescription: LOC-based review tier selection with shapeshifter dispatch for the unified reviewer.
 usedBy: [maestro]
-version: 0.1.0
-lastUpdated: 2026-04-07
+version: 0.1.1
+lastUpdated: 2026-04-25
 ---
 
 ## Purpose
@@ -17,7 +17,7 @@ Different scales of change need different review depth. This skill measures the 
    ```
    For plans and non-code work, skip to step 3 and use Unified tier.
 
-2. **Split if needed.** If total LOC exceeds 1500, dispatch the Contextualizer in review scoping mode (uses: `personas/contextualizer.md`, dispatch via: `skills/dispatch.md`) to group changed files into blocks of 1500 or fewer LOC. Each block proceeds independently through step 3.
+2. **Split if needed.** If total LOC exceeds 1500, dispatch the Contextualizer in review scoping mode (step 6 of `personas/contextualizer.md`, dispatch via: `skills/dispatch.md`) to group changed files into blocks of 1500 or fewer LOC. Each block proceeds independently through step 3.
 
 3. **Select tier and dispatch** (dispatch via: `skills/dispatch.md`). Each dispatch uses the same `personas/reviewer.md` persona. The task brief overrides the reviewer's focus — the reviewer shapeshifts into the role described in the brief while following the same playbook.
    - **Unified** (< 500 LOC) — single dispatch of `personas/reviewer.md`.

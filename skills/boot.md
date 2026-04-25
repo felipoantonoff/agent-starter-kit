@@ -1,7 +1,7 @@
 ---
 shortDescription: Session startup — gitignore, auto-update, memory, rules, context, CLI config, and greet.
 usedBy: [maestro]
-version: 0.4.0
+version: 0.4.1
 lastUpdated: 2026-04-25
 ---
 
@@ -11,7 +11,7 @@ Every session starts cold. The Maestro needs to ensure the project is wired corr
 
 ## Path Convention
 
-All framework files live under `.agents/`. Markdown references within the framework use bare paths for readability — always resolve them under `.agents/`.
+All framework files live under `.agents/`. Markdown references within the framework use bare paths for readability — always resolve them under `.agents/`. Shell commands always use the `.agents/` prefix for project-root paths.
 
 ## Procedure
 

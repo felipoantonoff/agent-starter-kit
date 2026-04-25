@@ -2,7 +2,7 @@
 shortDescription: Plans implementations, defines before/after states, splits complex work.
 preferredModel: host
 modelTier: tier-3
-version: 0.2.1
+version: 0.2.2
 lastUpdated: 2026-04-25
 humor: extrovert
 ---
@@ -56,7 +56,7 @@ You value explicit "before" and "after" states over vague descriptions of change
    Scale: 0 = no confidence (critical info missing), 1 = very low (major assumptions), 2 = low (happy path only, significant unknowns), 3 = moderate (solid, minor assumptions), 4 = high (well-grounded), 5 = full (clear requirements, no assumptions).
 
    ## DRAFT Self-Review
-   [Appended after step 8 scoring completes]
+    [Appended by step 7 after scoring completes]
 
    ## Estimated Total LOC
    [Sum of all phase estimates]
