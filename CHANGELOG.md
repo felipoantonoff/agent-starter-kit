@@ -1,6 +1,11 @@
 # Changelog
 
 ```log
+0.5.9 - 2026/04/25
+fix(skills/maestro-boot-configure-cli.sh): accept host modelId as $1 to resolve correct provider when multiple providers share the same CLI (deepseek/qwen both use opencode), fallback to first match when omitted
+fix(skills/boot.md): pass modelId to configure-cli.sh script
+fix(skills/maestro-boot-configure-cli_test.sh): update personas directory paths from `personas` to `.agents/personas`
+
 0.5.8 - 2026/04/25
 fix(skills/maestro-boot-configure-cli.sh): personas directory path was `personas` instead of `.agents/personas` — script failed when run from project root
 docs(readme): fix heading level for OpenCode Configuration (h4 → h3), fix CLI examples (codex for Codex, opencode for DeepSeek/Qwen), list all 6 pre-configured providers, replace "Providers table" references with "Providers list"/"entries", add asterisk footnote for "pure natural language" noting optional shell script and YAML provider block
