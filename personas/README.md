@@ -31,10 +31,21 @@ Lowercase, short name: `reviewer.md`, `architect.md`
 - **`modelTier`** (Required) — `tier-2`
 - **`version`** (Required) — `0.1.0`
 - **`lastUpdated`** (Required) — `2026-02-04`
+- **`humor`** (Optional) — `pragmatic`
 
 **`preferredModel`** selects which provider handles the persona. The value must match a `preferredModel` entry in the Providers table (`skills/dispatch.md`). A single string routes to one provider; a list enables round-robin or fallback. When omitted, the persona runs on the host runtime's native provider.
 
 **`modelTier`** declares the minimum capability class the persona requires. Tier classes: **tier-1** = fast/cheap, **tier-2** = balanced, **tier-3** = reasoning/smartest. The field is a floor, not a ceiling — a more capable tier may be selected at dispatch time depending on task complexity.
+
+**`humor`** controls response temperature and thinking budget. Available values:
+
+- `introvert` — temperature 0.2, thinking budget 10240
+- `pragmatic` — temperature 0.25, thinking budget 12288
+- `sympathetic` — temperature 0.3, thinking budget 14336
+- `extrovert` — temperature 0.35, thinking budget 16384
+- (omitted) — default temperature and thinking budget
+
+Lower values produce more conservative, focused responses. Higher values encourage broader exploration and creative reasoning. Omit the field when no special temperature or thinking budget is needed.
 
 ### Body
 
