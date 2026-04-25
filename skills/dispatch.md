@@ -1,7 +1,7 @@
 ---
 shortDescription: Assembles sub-agent prompts with task brief and routes to the correct provider.
 usedBy: [maestro]
-version: 0.2.4
+version: 0.2.5
 lastUpdated: 2026-04-25
 ---
 
@@ -92,9 +92,9 @@ Each entry maps a provider to its `preferredModel` value, CLI tool, and concrete
 
 - preferredModel: `claude`
 - CLI: `claude`
-- tier-1: Haiku
-- tier-2: Sonnet
-- tier-3: Opus
+- tier-1: `haiku`
+- tier-2: `sonnet`
+- tier-3: `opus`
 
 ### Codex CLI
 
@@ -102,7 +102,7 @@ Each entry maps a provider to its `preferredModel` value, CLI tool, and concrete
 - CLI: `codex`
 - tier-1: `gpt-5.4-mini`
 - tier-2: `gpt-5.3-codex`
-- tier-3: `gpt-5.4`
+- tier-3: `gpt-5.5`
 
 ### Cursor CLI
 
@@ -116,9 +116,17 @@ Each entry maps a provider to its `preferredModel` value, CLI tool, and concrete
 
 - preferredModel: `qwen`
 - CLI: `opencode`
-- tier-1: bailian-coding-plan/qwen3-coder-next
-- tier-2: bailian-coding-plan/qwen3.5-plus
-- tier-3: bailian-coding-plan/qwen3.5-plus
+- tier-1: `bailian-coding-plan/qwen3-coder-next`
+- tier-2: `bailian-coding-plan/qwen3.5-plus`
+- tier-3: `bailian-coding-plan/qwen3.6-plus`
+
+### Gemini
+
+- preferredModel: `gemini`
+- CLI: `gemini`
+- tier-1: `gemini-2.5-flash`
+- tier-2: `gemini-2.5-pro`
+- tier-3: `gemini-3.1-pro-preview`
 
 ## CLI Dispatch
 
@@ -136,6 +144,7 @@ Provider-specific flags (add entries as you integrate providers):
 - **`codex`**: `exec - --model [model] --sandbox workspace-write --skip-git-repo-check -C [workspace]`. Add `--full-auto` only when safety boundaries are already enforced by the environment.
 - **`cursor-agent`**: `--model [model]`. Add `--workspace [workspace]` only when explicitly provided. Add `--trust` only under externally enforced safety controls.
 - **`opencode`**: `OPENCODE_EXPERIMENTAL_BASH_DEFAULT_TIMEOUT_MS=600000 opencode run --model [provider/model]`. The env var raises the bash timeout from 120s to 600s. Optional: `--thinking` (shows thinking blocks).
+- **`gemini`**: `gemini --model [model]`
 
 ## Guardrails
 
