@@ -1,6 +1,11 @@
 # Changelog
 
 ```log
+0.5.6 - 2026/04/25
+docs(readme): add restart instruction to OpenCode Configuration — opencode.json created on first run requires CLI restart
+fix(skills/agent-memory): remove cycle-count reset and increment steps — removed from starter kit
+fix(skills/agent-memory): renumber steps 1-7 and update cross-references
+
 0.5.5 - 2026/04/25
 fix(dispatch): replace "verbatim" instruction in step 5 with explicit "complete, unmodified" wording to prevent MoE literal interpretation
 fix(dispatch): add "DO NOT LITERALLY OUTPUT THIS BRACKETED TEXT" guardrail to compose template placeholders
