@@ -1,15 +1,31 @@
 ---
 shortDescription: Universal code quality conventions for all languages.
 scope: coding
-version: 0.2.0
-lastUpdated: 2026-03-26
+version: 0.3.0
+lastUpdated: 2026-04-25
 ---
 
 ## Statement
 
+### KISS
+
+When choosing between a clever solution and a simple one, prefer simple. The simplest solution that fully solves the problem is correct. Complexity is a liability, not a feature. If a solution requires the reader to understand a design pattern, an algorithm, or a non-obvious language feature, a simpler alternative likely exists.
+
+### DRY
+
+Each piece of knowledge or behavior SHOULD have a single, unambiguous representation. When two code paths do the same thing, they should share a function, a variable, or a constant. If a change to one block requires an identical change to another, the duplication is a bug waiting to happen.
+
+### Single Responsibility Principle
+
+Functions, modules, and files SHOULD have one reason to change. A function that performs setup AND reporting, or parsing AND validation, has two responsibilities and SHOULD be split. When in doubt, ask: "if the requirements change, would these two operations change independently?" If yes, split. If no, keep together.
+
 ### Variable Naming
 
 Variable names MUST convey intention or purpose, not describe content. Single-letter variable names MUST NOT be used.
+
+### Function Naming
+
+Function names SHOULD NOT embed infrastructure or tool names (e.g., `resolveOpencodeConfigPath`). Use generic terms that describe the role (`resolveSupportedCliConfigPath`). The function should survive a tool swap without needing a rename.
 
 ### Error Handling
 
