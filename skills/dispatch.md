@@ -1,7 +1,7 @@
 ---
 shortDescription: Assembles sub-agent prompts with task brief and routes to the correct provider.
 usedBy: [maestro]
-version: 0.2.6
+version: 0.2.7
 lastUpdated: 2026-04-25
 ---
 
@@ -80,54 +80,46 @@ This is the only registry. If a persona is not listed there, it does not exist. 
 
 ## Providers
 
-Each entry maps a provider to its `preferredModel` value, CLI tool, and concrete models per tier. Tier classes: **tier-1** = fast/cheap, **tier-2** = balanced, **tier-3** = reasoning/smartest.
+```yaml
+providers:
+  claude:
+    cli: claude
+    tier-1: haiku
+    tier-2: sonnet
+    tier-3: opus
+  codex:
+    cli: codex
+    tier-1: gpt-5.4-mini
+    tier-2: gpt-5.3-codex
+    tier-3: gpt-5.5
+  cursor:
+    cli: cursor-agent
+    tier-1: auto
+    tier-2: auto
+    tier-3: auto
+  deepseek:
+    cli: opencode
+    tier-1: opencode-go/deepseek-v4-flash
+    tier-2: opencode-go/deepseek-v4-flash
+    tier-3: opencode-go/deepseek-v4-pro
+  gemini:
+    cli: gemini
+    tier-1: gemini-2.5-flash
+    tier-2: gemini-2.5-pro
+    tier-3: gemini-3.1-pro-preview
+  host:
+    cli: null
+    tier-1: null
+    tier-2: null
+    tier-3: null
+  qwen:
+    cli: opencode
+    tier-1: bailian-coding-plan/qwen3-coder-next
+    tier-2: bailian-coding-plan/qwen3.5-plus
+    tier-3: bailian-coding-plan/qwen3.6-plus
+```
 
-### Host (Native)
-
-- preferredModel: `host`
-- CLI: (none — always native dispatch)
-- Uses the host runtime's own subagent mechanism as the transport — the framework persona (with its identity, playbook, and rules) is still the agent being dispatched. The model tier is determined by the host's own configuration. This is not routing to a host-native agent; it is routing a framework persona through the host's native dispatch mechanism.
-
-### Claude Code
-
-- preferredModel: `claude`
-- CLI: `claude`
-- tier-1: `haiku`
-- tier-2: `sonnet`
-- tier-3: `opus`
-
-### Codex CLI
-
-- preferredModel: `codex`
-- CLI: `codex`
-- tier-1: `gpt-5.4-mini`
-- tier-2: `gpt-5.3-codex`
-- tier-3: `gpt-5.5`
-
-### Cursor CLI
-
-- preferredModel: `cursor`
-- CLI: `cursor-agent`
-- tier-1: `auto`
-- tier-2: `auto`
-- tier-3: `auto`
-- Note: Cursor does not expose per-tier model selection — all tiers resolve to `auto`. The tier floor still controls dispatch upgrade logic.
-
-### Qwen
-
-- preferredModel: `qwen`
-- CLI: `opencode`
-- tier-1: `bailian-coding-plan/qwen3-coder-next`
-- tier-2: `bailian-coding-plan/qwen3.5-plus`
-- tier-3: `bailian-coding-plan/qwen3.6-plus`
-
-### Gemini
-
-- preferredModel: `gemini`
-- CLI: `gemini`
-- tier-1: `gemini-2.5-flash`
-- tier-2: `gemini-2.5-pro`
-- tier-3: `gemini-3.1-pro-preview`
+Tier classes: **tier-1** = fast/cheap, **tier-2** = balanced, **tier-3** = reasoning/smartest.
 
 ## CLI Dispatch
 
@@ -144,7 +136,7 @@ Provider-specific flags (add entries as you integrate providers):
 - **`claude`**: `--model [model]` (accepts `haiku`, `sonnet`, `opus`). Do **not** use `--print` (`-p`) — it bypasses permission checks.
 - **`codex`**: `exec - --model [model] --sandbox workspace-write --skip-git-repo-check -C [workspace]`. Add `--full-auto` only when safety boundaries are already enforced by the environment.
 - **`cursor-agent`**: `--model [model]`. Add `--workspace [workspace]` only when explicitly provided. Add `--trust` only under externally enforced safety controls.
-- **`opencode`**: `OPENCODE_EXPERIMENTAL_BASH_DEFAULT_TIMEOUT_MS=600000 opencode run --model [provider/model]`. The env var raises the bash timeout from 120s to 600s. Optional: `--thinking` (shows thinking blocks).
+- **`opencode`**: `OPENCODE_EXPERIMENTAL_BASH_DEFAULT_TIMEOUT_MS=600000 opencode run --model [provider/model] --variant [effort] --thinking`. The env var raises the bash timeout from 120s to 600s. The `--variant` flag maps to the model's effort level (`high` or `max`).
 - **`gemini`**: `gemini --model [model]`. Pipe the assembled prompt via stdin — do not use `--prompt` as it overrides stdin input.
 
 ## Guardrails
