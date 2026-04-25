@@ -7,7 +7,7 @@ lastUpdated: 2026-04-24
 
 ## Purpose
 
-Before delivering a plan, the Architect evaluates its own output against the DRAFT rubric. Each letter is scored 0, 1, or 2. The total determines whether to deliver, rewrite, or abort. This replaces subjective self-assessment with a deterministic checklist aligned with the plan-critique skill's validation passes.
+Before delivering a plan, the Architect evaluates its own output against the DRAFT rubric. Each letter is scored 0, 1, or 2. The total determines whether to deliver, rewrite, or abort. This replaces subjective self-assessment with a deterministic checklist aligned with the adversarial review skill's validation passes.
 
 ## Procedure
 
