@@ -44,7 +44,7 @@ The framework **learns as it works**. Corrections, preferences, and lessons are 
 5. The Maestro orchestrates everything. On first run, it automatically dispatches the Contextualizer to map the codebase.
 6. (Optional) Customize — add personas, rules, skills, and providers to fit your project (see Customization below).
 
-#### OpenCode Configuration
+### OpenCode Configuration
 
 The framework works with any AI CLI — Claude Code, Codex, opencode, or any tool that can accept a prompt via `stdin`. No harness requires special configuration to use the personas, rules, and skills. OpenCode is the first-class supported target with native persona agent binding.
 
@@ -95,7 +95,7 @@ Skills codify procedures that personas reference. They answer "how to do X" so p
 
 ## Customization
 
-- **Dispatch** — edit `skills/dispatch.md` to match your CLI agents. The Providers table and CLI Dispatch section are pre-configured for Claude Code and [opencode](https://github.com/anomalyco/opencode) (Qwen). Add rows for any other provider/model you use.
+- **Dispatch** — edit `skills/dispatch.md` to match your CLI agents. The Providers list and CLI Dispatch section are pre-configured for Claude Code, Codex, Cursor, DeepSeek, Gemini, and Qwen. Add entries for any other provider/model you use.
 - Add new personas to `personas/` following the schema in `personas/README.md`
 - Add rules to `rules/commandments/`, `rules/edicts/`, or `rules/counsel/`
 - Add skills to `skills/` following the schema in `skills/README.md`
@@ -107,25 +107,27 @@ Each directory has a README with the full schema definition.
 
 ### Why this over other harnesses?
 
-GSD, GStack, and Gas Town are software — they lock you into dependencies, runtimes, and rigid workflows. Agent Starter Kit is **pure natural language**. Every persona, rule, and skill is a Markdown file you can edit with zero installation or build step.
+GSD, GStack, and Gas Town are software — they lock you into dependencies, runtimes, and rigid workflows. Agent Starter Kit is **pure natural language**\*. Every persona, rule, and skill is a Markdown file you can edit with zero installation or build step.
 
 Most harnesses are built around dense, expensive models and burn thousands of tokens on guidance you'll never use. This kit is a **scalpel**: minimal by design, tuned for cheaper MoE models like DeepSeek, GLM, Kimi, and Qwen. You pay only for the context you need. When your project grows, you extend it — add a persona, tweak a rule, swap a provider — all in plain text. Other tools produce code once and walk away. This framework learns, remembers, and adapts across every session.
+
+*\* Almost — one optional shell script for OpenCode auto-configuration and a YAML provider list in `skills/dispatch.md`. No runtimes, no dependencies, no build steps.*
 
 ### Why multi-model?
 
 Coding plans are routinely quantized and rate-limited weeks after launch — the version you fell in love with gradually loses sharpness as the provider optimizes for throughput. A multi-model harness fights this in three ways:
 
-1. **Resilience.** Spreading work across providers means you're less affected when any single plan degrades. If one provider tightens limits or loses quality, shift that persona's `preferredModel` to another row in the Providers table.
+1. **Resilience.** Spreading work across providers means you're less affected when any single plan degrades. If one provider tightens limits or loses quality, shift that persona's `preferredModel` to another entry in the Providers list.
 2. **Token conservation.** The orchestrator (Maestro) only handles routing and decomposition. Token-heavy roles like Architect and Coder are delegated to other capable models, so your premium plan lasts longer.
 3. **Fresh eyes.** Different models catch different things. A reviewer running on a separate provider will flag issues that the coder's model normalized.
 
 ### What do I need to run this?
 
-A coding plan or API key for each provider you route to. We recommend coding plans — **Claude Code** (Anthropic), **Codex** (OpenAI), and **Alibaba Model Studio** (Qwen) offer flat-rate pricing with generous token allowances designed for agentic workflows. API keys work too, but plans are more cost-effective for sustained use. Each provider needs its CLI tool installed (e.g., `claude` for Claude Code, `opencode` for Qwen). If you only route to one provider, one plan is enough.
+A coding plan or API key for each provider you route to. We recommend coding plans — **Claude Code** (Anthropic), **Codex** (OpenAI), and **Alibaba Model Studio** (Qwen) offer flat-rate pricing with generous token allowances designed for agentic workflows. API keys work too, but plans are more cost-effective for sustained use. Each provider needs its CLI tool installed (e.g., `claude` for Claude Code, `codex` for Codex, `opencode` for DeepSeek or Qwen). If you only route to one provider, one plan is enough.
 
 ### How does the Maestro use multiple models from a single CLI?
 
-The dispatch skill (`skills/dispatch.md`) handles this automatically. When a persona's `preferredModel` matches the host runtime (e.g., you're running Claude Code and the persona wants `claude`), the Maestro dispatches natively using the host's built-in subagent mechanism (e.g., the Task tool). When the `preferredModel` points to a different provider (e.g., `qwen`), the Maestro shells out to that provider's CLI tool (e.g., `opencode`) by piping the assembled prompt via `stdin`. The Providers table in `skills/dispatch.md` maps each model to its CLI — add rows for any provider you want to use.
+The dispatch skill (`skills/dispatch.md`) handles this automatically. When a persona's `preferredModel` matches the host runtime (e.g., you're running Claude Code and the persona wants `claude`), the Maestro dispatches natively using the host's built-in subagent mechanism (e.g., the Task tool). When the `preferredModel` points to a different provider (e.g., `qwen`), the Maestro shells out to that provider's CLI tool (e.g., `opencode`) by piping the assembled prompt via `stdin`. The Providers list in `skills/dispatch.md` maps each model to its CLI — add entries for any provider you want to use.
 
 ### Can I use this with just one model?
 
