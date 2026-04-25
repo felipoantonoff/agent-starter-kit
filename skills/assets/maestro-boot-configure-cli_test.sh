@@ -59,8 +59,8 @@ EOF
 
 setupNoCliConfig() {
   local testDir="$1"
-  mkdir -p "$testDir/personas"
-  cat > "$testDir/personas/coder.md" <<'EOF'
+  mkdir -p "$testDir/.agents/personas"
+  cat > "$testDir/.agents/personas/coder.md" <<'EOF'
 ---
 preferredModel: qwen
 modelTier: tier-2
@@ -75,8 +75,8 @@ EOF
 
 setupSkipsReadme() {
   local testDir="$1"
-  mkdir -p "$testDir/personas"
-  cat > "$testDir/personas/coder.md" <<'EOF'
+  mkdir -p "$testDir/.agents/personas"
+  cat > "$testDir/.agents/personas/coder.md" <<'EOF'
 ---
 preferredModel: qwen
 modelTier: tier-2
@@ -84,7 +84,7 @@ shortDescription: Software development.
 ---
 You are a coder.
 EOF
-  cat > "$testDir/personas/README.md" <<'EOF'
+  cat > "$testDir/.agents/personas/README.md" <<'EOF'
 ---
 preferredModel: qwen
 modelTier: tier-2
@@ -98,8 +98,8 @@ EOF
 
 setupMergesWithExistingAgents() {
   local testDir="$1"
-  mkdir -p "$testDir/personas"
-  cat > "$testDir/personas/coder.md" <<'EOF'
+  mkdir -p "$testDir/.agents/personas"
+  cat > "$testDir/.agents/personas/coder.md" <<'EOF'
 ---
 preferredModel: qwen
 modelTier: tier-2
@@ -120,8 +120,8 @@ EOF
 
 setupReviewerPersona() {
   local testDir="$1"
-  mkdir -p "$testDir/personas"
-  cat > "$testDir/personas/coder.md" <<'EOF'
+  mkdir -p "$testDir/.agents/personas"
+  cat > "$testDir/.agents/personas/coder.md" <<'EOF'
 ---
 preferredModel: qwen
 modelTier: tier-2
@@ -129,7 +129,7 @@ shortDescription: Software development.
 ---
 You are a coder.
 EOF
-  cat > "$testDir/personas/reviewer.md" <<'EOF'
+  cat > "$testDir/.agents/personas/reviewer.md" <<'EOF'
 ---
 preferredModel: qwen
 modelTier: tier-2
@@ -190,8 +190,8 @@ EOF
 runThinkingBudgetVerificationCases() {
   local testDir introvertBudget pragmaticBudget sympatheticBudget extrovertBudget defaultBudget
   testDir=$(mktemp -d -p "$fixtureDir")
-  mkdir -p "$testDir/personas"
-  cat > "$testDir/personas/introvert.md" <<'EOF'
+  mkdir -p "$testDir/.agents/personas"
+  cat > "$testDir/.agents/personas/introvert.md" <<'EOF'
 ---
 preferredModel: qwen
 modelTier: tier-2
@@ -199,7 +199,7 @@ humor: introvert
 ---
 Quiet persona.
 EOF
-  cat > "$testDir/personas/pragmatic.md" <<'EOF'
+  cat > "$testDir/.agents/personas/pragmatic.md" <<'EOF'
 ---
 preferredModel: qwen
 modelTier: tier-2
@@ -207,7 +207,7 @@ humor: pragmatic
 ---
 Direct persona.
 EOF
-  cat > "$testDir/personas/sympathetic.md" <<'EOF'
+  cat > "$testDir/.agents/personas/sympathetic.md" <<'EOF'
 ---
 preferredModel: qwen
 modelTier: tier-2
@@ -215,7 +215,7 @@ humor: sympathetic
 ---
 Warm persona.
 EOF
-  cat > "$testDir/personas/extrovert.md" <<'EOF'
+  cat > "$testDir/.agents/personas/extrovert.md" <<'EOF'
 ---
 preferredModel: qwen
 modelTier: tier-2
@@ -223,7 +223,7 @@ humor: extrovert
 ---
 Outgoing persona.
 EOF
-  cat > "$testDir/personas/default.md" <<'EOF'
+  cat > "$testDir/.agents/personas/default.md" <<'EOF'
 ---
 preferredModel: qwen
 modelTier: tier-2
@@ -357,10 +357,10 @@ EOF
 runExternalDirVerificationCases() {
   local testDir personaName externalDirValue
   testDir=$(mktemp -d -p "$fixtureDir")
-  mkdir -p "$testDir/personas"
+  mkdir -p "$testDir/.agents/personas"
 
   for personaName in build architect coder reviewer contextualizer; do
-    cat > "$testDir/personas/${personaName}.md" <<EOF
+    cat > "$testDir/.agents/personas/${personaName}.md" <<EOF
 ---
 preferredModel: qwen
 modelTier: tier-2
@@ -482,9 +482,9 @@ runHostProviderResolutionCases() {
   local testDir resolvedModel
 
   testDir=$(mktemp -d -p "$fixtureDir")
-  mkdir -p "$testDir/personas"
+  mkdir -p "$testDir/.agents/personas"
 
-  cat > "$testDir/personas/coder.md" <<'EOF'
+  cat > "$testDir/.agents/personas/coder.md" <<'EOF'
 ---
 preferredModel: host
 modelTier: tier-2
@@ -521,9 +521,9 @@ runUnsupportedProviderSkippedCases() {
   local testDir unknownAgentEntry
 
   testDir=$(mktemp -d -p "$fixtureDir")
-  mkdir -p "$testDir/personas"
+  mkdir -p "$testDir/.agents/personas"
 
-  cat > "$testDir/personas/unknown.md" <<'EOF'
+  cat > "$testDir/.agents/personas/unknown.md" <<'EOF'
 ---
 preferredModel: unknown-provider
 modelTier: tier-2
@@ -532,7 +532,7 @@ shortDescription: Unknown provider persona.
 Unknown provider body.
 EOF
 
-  cat > "$testDir/personas/coder.md" <<'EOF'
+  cat > "$testDir/.agents/personas/coder.md" <<'EOF'
 ---
 preferredModel: qwen
 modelTier: tier-2
