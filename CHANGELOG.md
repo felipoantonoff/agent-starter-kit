@@ -1,6 +1,12 @@
 # Changelog
 
 ```log
+0.5.3 - 2026/04/25
+fix(boot): preferredModel/modelTier resolution with multiple provider support — replace readPersonaModelId with resolvePersonaModelId, add isProviderOnSupportedCli membership check, extract readProvidersYamlBlock, consolidate resolveHumor* into resolveHumorAttributes, consolidate agentBindingBuilder into single jq invocation, remove detectCliConfigPath wrapper, move CLI guard before config file creation
+fix(boot): fix guard order to avoid creating stray files outside the supported CLI
+fix(dispatch): add deepseek provider, sort providers alphabetically, add --variant [effort] and --thinking to opencode CLI dispatch command
+docs(code-quality): add KISS, DRY, SRP principles and function naming rule — avoid infrastructure/tool names in function names
+
 0.5.2 - 2026/04/25
 fix(personas/maestro): add dedicated "Load dispatch procedure" step — read dispatch.md IN FULL before any dispatch
 fix(personas/maestro): plan review gate names Reviewer persona + adversarial skill + dispatch skill
