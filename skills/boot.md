@@ -1,7 +1,7 @@
 ---
 shortDescription: Session startup — gitignore, auto-update, memory, rules, context, CLI config, and greet.
 usedBy: [maestro]
-version: 0.4.1
+version: 0.4.2
 lastUpdated: 2026-04-25
 ---
 
@@ -41,8 +41,10 @@ All framework files live under `.agents/`. Markdown references within the framew
 4. **CLI configuration.** Run:
 
    ```bash
-   bash .agents/skills/assets/maestro-boot-configure-cli.sh
+   bash .agents/skills/assets/maestro-boot-configure-cli.sh <your-model-id>
    ```
+
+   Pass your own model ID (e.g., `bailian-coding-plan/qwen3.6-plus`) so the script can resolve the correct provider when multiple providers share the same CLI.
 
     - If the script outputs `opencode.json created`, inform the user that the file was written and they should restart the session for agent bindings to take effect.
     - If the script outputs `opencode.json existed`, it means the file was already present and was updated — no restart required.
