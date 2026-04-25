@@ -1,8 +1,8 @@
 ---
-shortDescription: Session startup — gitignore, auto-update, memory, rules, context, and greet.
+shortDescription: Session startup — gitignore, auto-update, memory, rules, context, CLI config, and greet.
 usedBy: [maestro]
-version: 0.3.4
-lastUpdated: 2026-03-27
+version: 0.4.0
+lastUpdated: 2026-04-25
 ---
 
 ## Purpose
@@ -15,12 +15,13 @@ All framework files live under `.agents/`. Markdown references within the framew
 
 ## Procedure
 
-1. **Gitignore.** Ensure `.agents/` and `.memory/` are in the project's `.gitignore`. Run:
+1. **Gitignore.** Ensure `.agents/`, `.memory/`, and `opencode.json` are in the project's `.gitignore`. Run:
 
    ```bash
    touch .gitignore
-   grep -qxF '.agents/' .gitignore || echo '.agents/' >> .gitignore
-   grep -qxF '.memory/' .gitignore || echo '.memory/' >> .gitignore
+   for entry in '.agents/' '.memory/' 'opencode.json'; do
+       grep -qxF "$entry" .gitignore || echo "$entry" >> .gitignore
+   done
    ```
 
 2. **Framework pull.** Run:
@@ -31,23 +32,34 @@ All framework files live under `.agents/`. Markdown references within the framew
 
    - If the pull brought changes:
      - Read the `CHANGELOG.md` in `.agents` to understand what changed.
-     - Purge obsolete long-term memory entries — compare `.memory/long-term.md` against the changelog and remove any entry that the update now handles natively.
-     - Stop and reboot — re-read the Maestro persona from the top so updated instructions take effect.
+     - Purge obsolete long-term memory entries — read `.memory/long-term.md`, read the changelog, and for each memory entry remove it only if the changelog describes a feature, skill, or rule that replaces that memory's purpose. If the entry's purpose is not clearly covered by the changelog, keep it.
+     - Re-read `personas/maestro.md` from the top so updated instructions take effect.
    - If already up to date, continue.
 
 3. **Memory.** Load memory (uses: `skills/agent-memory.md`).
 
-4. **Load the rules index.** Read `rules/README.md` to know what rules are available and their scopes. Do not read the individual rule files — sub-agents will read them when dispatched.
+4. **CLI configuration.** Run:
 
-5. **Context.** Verify the project has context files. Run:
+   ```bash
+   bash .agents/skills/assets/maestro-boot-configure-cli.sh
+   ```
+
+    - If the script outputs `opencode.json created`, inform the user that the file was written and they should restart the session for agent bindings to take effect.
+    - If the script outputs `opencode.json existed`, it means the file was already present and was updated — no restart required.
+    - If `yq` or `jq` is not installed, the script prints a skip message — no action needed.
+    - If no supported CLI config file is found, the script exits silently — no action needed.
+
+5. **Load the rules index.** Read `rules/README.md` to know what rules are available and their scopes. Do not read the individual rule files — sub-agents will read them when dispatched.
+
+6. **Context.** Verify the project has context files. Run:
 
    ```bash
    find . -name ".context.md" -not -path "*/node_modules/*" -not -path "*/.git/*" -not -path "*/vendor/*" -not -path "*/.cache/*" -print -quit
    ```
 
-   - If `find` produces no output, no `.context.md` files exist. Dispatch the **Contextualizer** (uses: `personas/contextualizer.md`) before proceeding.
+    - If `find` produces no output, no `.context.md` files exist. Dispatch the **Contextualizer** (uses: `personas/contextualizer.md`) before proceeding.
 
-6. **Greet.** Greet the user and wait for instructions.
+7. **Greet.** Greet the user and wait for instructions. Remind the user: they are not talking to a single agent — they are talking to a team of specialists that can handle multiple requests simultaneously, so large and complex prompts are welcome.
 
 ## Guardrails
 
