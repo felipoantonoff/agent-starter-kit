@@ -103,10 +103,6 @@ Skills codify procedures that personas reference. They answer "how to do X" so p
 
 Each directory has a README with the full schema definition.
 
-## Thinking Budget for MoE Providers
-
-If you use Mixture-of-Experts models (Kimi, Qwen, DeepSeek, or similar), cap thinking tokens at **16,000** in your CLI's configuration. Research across 121+ code review dispatches found that MoE models regress past this threshold — higher budgets cause models to qualify findings, soften severity, and rationalize away bugs they previously found. Dense models (Claude, Seed) do not exhibit this regression and can use higher budgets safely. See [Overfed, Overthought, Overasked](https://ntorga.com/overfed-overthought-overasked-stop-sabotaging-your-ai/) for the full research.
-
 ## FAQ
 
 ### Why this over other harnesses?
@@ -152,3 +148,9 @@ Yes. On every session start, the boot sequence runs `git -C .agents pull`. If th
 ### What does "model-agnostic" mean? Which models are supported?
 
 Any model with a CLI tool that can accept a prompt via `stdin` works. As a quality floor, we recommend models scoring 1300+ ELO on [GDPval-AA](https://artificialanalysis.ai/evaluations/gdpval-aa) — a benchmark for general-purpose reasoning. Below that threshold, personas may struggle with multi-step tasks.
+
+### What thinking token budget should I use for MoE models?
+
+If you use Mixture-of-Experts models (Kimi, Qwen, DeepSeek, or similar), cap thinking tokens at **16,000** in your CLI's configuration. Research across 121+ code review dispatches found that MoE models regress past this threshold — higher budgets cause models to qualify findings, soften severity, and rationalize away bugs they previously found. Dense models (Claude, Seed) do not exhibit this regression and can use higher budgets safely. See [Overfed, Overthought, Overasked](https://ntorga.com/overfed-overthought-overasked-stop-sabotaging-your-ai/) for the full research.
+
+If you're running OpenCode, the boot sequence already sets per-persona thinking budgets based on humor profiles — no manual configuration needed.
