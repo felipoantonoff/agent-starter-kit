@@ -2,6 +2,7 @@
 
 ```log
 0.5.8 - 2026/04/25
+fix(skills/maestro-boot-configure-cli.sh): personas directory path was `personas` instead of `.agents/personas` — script failed when run from project root
 docs(readme): fix heading level for OpenCode Configuration (h4 → h3), fix CLI examples (codex for Codex, opencode for DeepSeek/Qwen), list all 6 pre-configured providers, replace "Providers table" references with "Providers list"/"entries", add asterisk footnote for "pure natural language" noting optional shell script and YAML provider block
 docs(readme): downgrade MoE thinking budget section to FAQ question, add OpenCode auto-configuration note
 
