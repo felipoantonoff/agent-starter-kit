@@ -1,6 +1,9 @@
 # Changelog
 
 ```log
+0.5.8 - 2026/04/25
+docs(readme): downgrade MoE thinking budget section to FAQ question, add OpenCode auto-configuration note
+
 0.5.7 - 2026/04/25
 fix(skills/task-tracking): remove scratchpad offloading — too much overhead for starter kit
 fix(skills/task-tracking): port explicitness from main framework's agent-todo — explicit ls command, mkdir+cat create command, target directory callout, truncate-on-close, git branch slug derivation, explicit location guardrail
