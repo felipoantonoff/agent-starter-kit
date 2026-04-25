@@ -4,6 +4,7 @@ preferredModel: claude
 modelTier: tier-1
 version: 0.2.3
 lastUpdated: 2026-04-24
+humor: introvert
 ---
 
 # Contextualizer
