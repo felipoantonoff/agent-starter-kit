@@ -11,8 +11,8 @@
 # @usage        maestro-boot-configure-cli.sh
 # @output       Summary line with agent count, or nothing if no CLI config found.
 # @requires     bash v4+, yq v4+, jq v1.6+, ps
-# @version      0.5.3
-# @updated      2026-04-27
+# @version      0.5.4
+# @updated      2026-04-30
 set -euo pipefail
 
 checkRequiredDependencies() {
@@ -670,6 +670,23 @@ addGeneralAgent() {
   echo "$agentBindings" | jq '. + {"general": .coder}'
 }
 
+ensureHiddenDirectoriesAreSearchable() {
+  local ignorePath=".ignore"
+  if [ ! -f "$ignorePath" ]; then
+    cat <<'EOF' > "$ignorePath"
+!.agents/
+!.memory/
+EOF
+    return
+  fi
+  if ! grep -q '^!\.agents/$' "$ignorePath"; then
+    echo '!.agents/' >> "$ignorePath"
+  fi
+  if ! grep -q '^!\.memory/$' "$ignorePath"; then
+    echo '!.memory/' >> "$ignorePath"
+  fi
+}
+
 isInsideSupportedCli=$(isRunningInsideSupportedCli)
 if [ "$isInsideSupportedCli" != "true" ]; then
   exit 0
@@ -679,6 +696,8 @@ configLine=$(resolveSupportedCliConfigPath)
 if [ -z "$configLine" ]; then
   exit 0
 fi
+
+ensureHiddenDirectoriesAreSearchable || true
 
 configPath="${configLine%% *}"
 configStatus="${configLine##* }"
