@@ -11,7 +11,7 @@
 # @usage        maestro-boot-configure-cli.sh
 # @output       Summary line with agent count, or nothing if no CLI config found.
 # @requires     bash v4+, yq v4+, jq v1.6+, ps
-# @version      0.5.4
+# @version      0.5.5
 # @updated      2026-04-30
 set -euo pipefail
 
@@ -368,7 +368,7 @@ applyPermissionProfile() {
     "edit": {
       "*.md": "allow",
       "/tmp/*": "allow",
-      "*": "deny"
+      "*": "ask"
     },
     "read": {
       "*": "allow"
@@ -451,7 +451,7 @@ applyPermissionProfile() {
       profileJson='{
   "permission": {
     "bash": {
-      "*": "deny",
+      "*": "ask",
       "rm *": "deny",
       "mkfs *": "deny",
       "dd *": "deny",
@@ -502,7 +502,7 @@ applyPermissionProfile() {
     "edit": {
       "*.md": "allow",
       "/tmp/*": "allow",
-      "*": "deny"
+      "*": "ask"
     },
     "read": {
       "*": "allow"
@@ -517,7 +517,7 @@ applyPermissionProfile() {
       profileJson='{
   "permission": {
     "bash": {
-      "*": "deny",
+      "*": "ask",
       "rm *": "deny",
       "mkfs *": "deny",
       "dd *": "deny",
@@ -560,7 +560,7 @@ applyPermissionProfile() {
     "edit": {
       "*.md": "allow",
       "/tmp/*": "allow",
-      "*": "deny"
+      "*": "ask"
     },
     "read": {
       "*": "allow",
@@ -571,7 +571,7 @@ applyPermissionProfile() {
       "/tmp/*": "allow"
     }
   }
-}'
+}';
       ;;
     *)
       echo "$agentBindings"
