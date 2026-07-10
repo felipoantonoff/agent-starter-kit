@@ -3,3 +3,8 @@
 .env.example
 opencode.json
 .ignore
+
+# Atalho local (symlink) pro .agents/ do workspace Codemarket — serve só
+# pra diff visual entre o framework upstream e as customizações locais.
+# Não é conteúdo do agent-starter-kit upstream, não commitar.
+.agents
